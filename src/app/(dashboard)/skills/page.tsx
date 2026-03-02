@@ -359,7 +359,7 @@ function SkillCard({
                     color: "#fafafa",
                     fontSize: "12px",
                   }}
-                  formatter={(v: number) => [`${v}h`, "Hours"]}
+                  formatter={(v) => [`${v}h`, "Hours"]}
                 />
                 <Bar dataKey="hours" fill="#6366f1" radius={[4, 4, 0, 0]} />
               </BarChart>

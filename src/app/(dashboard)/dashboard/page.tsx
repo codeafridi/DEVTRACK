@@ -114,7 +114,7 @@ function ActivityChart({
                 color: "#fafafa",
                 fontSize: "13px",
               }}
-              formatter={(value: number) => [`${value}h`, "Hours"]}
+              formatter={(value) => [`${value}h`, "Hours"]}
             />
             <Area
               type="monotone"

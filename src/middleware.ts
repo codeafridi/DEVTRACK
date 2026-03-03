@@ -1,4 +1,7 @@
-export { auth as middleware } from "@/lib/auth";
+import NextAuth from "next-auth";
+import { authConfig } from "@/lib/auth.config";
+
+export const { auth: middleware } = NextAuth(authConfig);
 
 export const config = {
   matcher: [
@@ -6,12 +9,7 @@ export const config = {
     "/skills/:path*",
     "/projects/:path*",
     "/activity/:path*",
+    "/github/:path*",
     "/settings/:path*",
-    "/api/skills/:path*",
-    "/api/projects/:path*",
-    "/api/activity/:path*",
-    "/api/streak/:path*",
-    "/api/github/:path*",
-    "/api/settings/:path*",
   ],
 };

@@ -122,8 +122,8 @@ function AddActivityModal({
             <input
               type="number"
               step="0.5"
-              min="0.1"
-              max="24"
+              min="0.5"
+              max="8"
               value={hours}
               onChange={(e) => setHours(e.target.value)}
               required

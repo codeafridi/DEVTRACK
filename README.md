@@ -1,61 +1,32 @@
 # DevTrack
 
-**Your personal developer operating system.** Track skills, ship projects, log hours, monitor GitHub activity, and build momentum — all in one place.
+**Your personal developer operating system.** One dashboard to track your skills, projects, coding hours, GitHub activity, and streaks.
 
-[**Try DevTrack Live →**](https://devtrack-codeafridis-projects.vercel.app)
+[**Start using DevTrack →**](https://devtrack-codeafridis-projects.vercel.app)
 
 ---
 
-## What is DevTrack?
+## Why DevTrack?
 
-DevTrack is a free dashboard built for developers who want to take their growth seriously. Instead of scattered notes and forgotten goals, DevTrack gives you one clean place to track everything that matters.
+Most developers have no idea how much they've actually grown. Hours get lost, projects get forgotten, and skills stay untracked. DevTrack fixes that by giving you one clean dashboard to see everything.
 
-## Features
+## What you get
 
-**Dashboard** — See your total hours, active skills, projects, current streak, and a 30-day activity chart at a glance.
+- **Dashboard** — Total hours, active skills, projects, streak count, and a 30-day activity chart
+- **Skills Tracker** — Add skills, set target levels, log practice hours, watch progress over time
+- **Project Board** — Track projects from planning to completion with notes and GitHub links
+- **Daily Logs** — Record what you worked on, how long, and tag it
+- **GitHub Feed** — See your repos, commit chart, and recent activity
+- **Streaks & Badges** — Stay consistent, hit milestones, build momentum
 
-**Skills Tracker** — Add skills you're learning, set a target level, log practice hours, and watch your progress graph grow.
+## How it works
 
-**Project Board** — Track projects from Planning → Building → Completed. Add notes, link GitHub repos, and never lose context.
+1. Sign in with Google
+2. Start logging your skills, projects, and daily activity
+3. Watch your developer profile grow
 
-**Activity Logs** — Log what you worked on each day with hours, descriptions, and tags. Paginated and searchable.
+That's it. Free to use.
 
-**GitHub Integration** — Connect your GitHub username to see your repos, weekly commit chart, and recent commit feed.
+---
 
-**Streak System** — Consecutive day tracking that keeps you accountable, with badges for hitting milestones.
-
-## Tech Stack
-
-- **Framework** — Next.js 15, TypeScript, App Router
-- **Styling** — Tailwind CSS v4
-- **Database** — PostgreSQL via Prisma
-- **Auth** — NextAuth.js v5 (Google OAuth)
-- **Charts** — Recharts
-- **State** — TanStack Query
-- **Deployment** — Vercel + Supabase
-
-## Self-Host
-
-```bash
-git clone https://github.com/codeafridi/DEVTRACK.git
-cd DEVTRACK
-npm install
-cp .env.example .env
-# Fill in your DATABASE_URL, AUTH_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET
-npx prisma db push
-npm run dev
-```
-
-Open [localhost:3000](http://localhost:3000) and sign in.
-
-## Roadmap
-
-- Public shareable developer profile
-- Weekly/monthly analytics comparisons
-- AI-powered growth insights
-- Gamification (XP, levels, achievements)
-- Exportable performance reports
-
-## License
-
-MIT
+Built by [@codeafridi](https://github.com/codeafridi)

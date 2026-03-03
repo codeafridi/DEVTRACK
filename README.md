@@ -22,6 +22,4 @@ Most developers have no idea how much they've actually grown. Hours get lost, pr
 
 That's it. Free to use.
 
----
 
-Built by [@codeafridi](https://github.com/codeafridi)

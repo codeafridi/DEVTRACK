@@ -2,12 +2,10 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Zap, Loader2 } from "lucide-react";
 
 export default function LoginPage() {
-  const router = useRouter();
   const [error, setError] = useState("");
   const [googleLoading, setGoogleLoading] = useState(false);
 

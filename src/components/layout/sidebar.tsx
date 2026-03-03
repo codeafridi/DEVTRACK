@@ -14,9 +14,15 @@ import {
   Zap,
   Menu,
   X,
+  Shield,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+
+const ADMIN_EMAILS = [
+  "shadowscripter2006@gmail.com",
+  "code.afridi@gmail.com",
+];
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -84,6 +90,24 @@ export function Sidebar() {
               </Link>
             );
           })}
+          {session?.user?.email && ADMIN_EMAILS.includes(session.user.email) && (
+            <>
+              <div className="my-2 mx-3 border-t border-border" />
+              <Link
+                href="/admin"
+                onClick={() => setMobileOpen(false)}
+                className={cn(
+                  "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
+                  pathname === "/admin"
+                    ? "bg-accent/10 text-accent"
+                    : "text-text-secondary hover:text-text-primary hover:bg-surface-hover"
+                )}
+              >
+                <Shield size={18} />
+                Admin
+              </Link>
+            </>
+          )}
         </nav>
 
         <div className="px-3 py-4 border-t border-border">

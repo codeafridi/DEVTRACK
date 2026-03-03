@@ -2,7 +2,7 @@
 
 **Your personal developer operating system.** One dashboard to track your skills, projects, coding hours, GitHub activity, and streaks.
 
-[**Start using DevTrack →**](https://devtrack-codeafridis-projects.vercel.app)
+[**Start using DevTrack →**](https://devtrack-rose.vercel.app/)
 
 ---
 
@@ -19,11 +19,6 @@ Most developers have no idea how much they've actually grown. Hours get lost, pr
 - **GitHub Feed** — See your repos, commit chart, and recent activity
 - **Streaks & Badges** — Stay consistent, hit milestones, build momentum
 
-## How it works
-
-1. Sign in with Google
-2. Start logging your skills, projects, and daily activity
-3. Watch your developer profile grow
 
 That's it. Free to use.
 

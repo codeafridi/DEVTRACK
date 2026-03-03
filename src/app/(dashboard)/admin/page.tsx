@@ -30,8 +30,9 @@ export default function AdminPage() {
     queryFn: async () => {
       const res = await fetch("/api/admin/stats");
       if (!res.ok) {
-        if (res.status === 403) throw new Error("ACCESS_DENIED");
-        throw new Error("Failed to load");
+        const data = await res.json().catch(() => ({}));
+        if (res.status === 403) throw new Error(data.error || "ACCESS_DENIED");
+        throw new Error(data.error || "Failed to load");
       }
       return res.json() as Promise<{
         totalUsers: number;
@@ -67,12 +68,12 @@ export default function AdminPage() {
     );
   }
 
-  if (error?.message === "ACCESS_DENIED") {
+  if (error?.message?.includes("Access denied") || error?.message === "ACCESS_DENIED") {
     return (
       <div className="flex flex-col items-center justify-center py-20">
         <Shield size={48} className="text-danger mb-4" />
         <h1 className="text-2xl font-bold">Access Denied</h1>
-        <p className="text-text-secondary mt-2">You don&apos;t have admin access.</p>
+        <p className="text-text-secondary mt-2">{error.message}</p>
       </div>
     );
   }

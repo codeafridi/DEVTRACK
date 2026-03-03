@@ -22,6 +22,8 @@ import { useState } from "react";
 const ADMIN_EMAILS = [
   "shadowscripter2006@gmail.com",
   "code.afridi@gmail.com",
+  "cloudworkspace2006@gmail.com",
+  "ohyeahi@gmail.com",
 ];
 
 const navItems = [

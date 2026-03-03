@@ -8,40 +8,16 @@ import { Zap, Loader2 } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
-
-    try {
-      const result = await signIn("credentials", {
-        email,
-        password,
-        redirect: false,
-      });
-
-      if (result?.error) {
-        setError("Invalid email or password");
-      } else {
-        router.push("/dashboard");
-        router.refresh();
-      }
-    } catch {
-      setError("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  }
 
   async function handleGoogleSignIn() {
     setGoogleLoading(true);
-    await signIn("google", { callbackUrl: "/dashboard" });
+    const result = await signIn("google", { callbackUrl: "/dashboard" });
+    if (result?.error) {
+      setError("Failed to sign in with Google");
+      setGoogleLoading(false);
+    }
   }
 
   return (
@@ -64,7 +40,7 @@ export default function LoginPage() {
         <button
           onClick={handleGoogleSignIn}
           disabled={googleLoading}
-          className="w-full flex items-center justify-center gap-3 py-2.5 px-4 rounded-lg border border-border bg-surface hover:bg-surface-hover text-sm font-medium transition-colors disabled:opacity-50"
+          className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-lg border border-border bg-surface hover:bg-surface-hover text-sm font-medium transition-colors disabled:opacity-50"
         >
           {googleLoading ? (
             <Loader2 size={18} className="animate-spin" />
@@ -88,58 +64,8 @@ export default function LoginPage() {
               />
             </svg>
           )}
-          Continue with Google
+          Sign in with Google
         </button>
-
-        <div className="relative">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-border" />
-          </div>
-          <div className="relative flex justify-center text-xs">
-            <span className="px-2 bg-background text-text-muted">or sign in with email</span>
-          </div>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-1.5">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-              required
-              className="w-full px-3 py-2.5 rounded-lg text-sm"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-text-secondary mb-1.5">
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              required
-              className="w-full px-3 py-2.5 rounded-lg text-sm"
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-2.5 px-4 rounded-lg bg-accent hover:bg-accent-hover text-white font-medium text-sm transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
-          >
-            {loading && <Loader2 size={16} className="animate-spin" />}
-            Sign In
-          </button>
-        </form>
       </div>
 
       <p className="text-center text-sm text-text-secondary mt-6">

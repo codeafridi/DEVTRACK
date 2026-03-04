@@ -44,11 +44,6 @@ export default async function HomePage() {
       <main className="flex-1">
         {/* Hero */}
         <section className="flex flex-col items-center px-4 pt-20 pb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border text-sm text-text-secondary mb-6">
-            <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-            Free &middot; No credit card required
-          </div>
-
           <h1 className="text-4xl sm:text-6xl font-bold text-center max-w-3xl leading-tight">
             Your Personal
             <br />
@@ -306,7 +301,7 @@ export default async function HomePage() {
               Ready to track your growth?
             </h2>
             <p className="text-text-secondary mb-6">
-              Sign in with Google — takes 2 seconds. Start logging today.
+              Sign in with Google and start logging your progress.
             </p>
             <Link
               href="/register"

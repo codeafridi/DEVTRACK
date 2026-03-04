@@ -4,7 +4,7 @@ import { Providers } from "@/components/providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "DevTrack — Personal Developer OS",
+  title: "DevTrack — Developer Progress Tracker",
   description:
     "Track your skills, projects, and growth as a developer. A personal operating system for ambitious engineers.",
 };

@@ -3,7 +3,8 @@
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import Link from "next/link";
-import { Zap, Loader2 } from "lucide-react";
+import Image from "next/image";
+import { Loader2 } from "lucide-react";
 
 export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
@@ -16,9 +17,7 @@ export default function RegisterPage() {
   return (
     <div className="w-full max-w-sm">
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-accent mb-4">
-          <Zap size={24} className="text-white" />
-        </div>
+        <Image src="/logo.png" alt="DevTrack" width={48} height={48} className="rounded-xl mx-auto mb-4" />
         <h1 className="text-2xl font-bold">Create your account</h1>
         <p className="text-text-secondary mt-1">Start tracking your developer growth</p>
       </div>

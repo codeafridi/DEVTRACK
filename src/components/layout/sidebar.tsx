@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import {
@@ -11,7 +12,6 @@ import {
   Github,
   Settings,
   LogOut,
-  Zap,
   Menu,
   X,
   Shield,
@@ -63,9 +63,7 @@ export function Sidebar() {
         )}
       >
         <div className="flex items-center gap-2.5 px-6 h-16 border-b border-border">
-          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent">
-            <Zap size={16} className="text-white" />
-          </div>
+          <Image src="/logo.png" alt="DevTrack" width={32} height={32} className="rounded-lg" />
           <span className="text-lg font-semibold tracking-tight">
             DevTrack
           </span>

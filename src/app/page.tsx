@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import Link from "next/link";
-import { Zap, ArrowRight, Code2, BarChart3, Target, Github } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Code2, BarChart3, Target, Github } from "lucide-react";
 
 export default async function HomePage() {
   const session = await auth();
@@ -11,9 +12,7 @@ export default async function HomePage() {
     <div className="min-h-screen flex flex-col">
       <header className="flex items-center justify-between px-6 h-16 border-b border-border">
         <div className="flex items-center gap-2.5">
-          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent">
-            <Zap size={16} className="text-white" />
-          </div>
+          <Image src="/logo.png" alt="DevTrack" width={32} height={32} className="rounded-lg" />
           <span className="text-lg font-semibold tracking-tight">DevTrack</span>
         </div>
         <div className="flex items-center gap-3">

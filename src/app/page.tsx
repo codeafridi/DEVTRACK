@@ -320,7 +320,10 @@ export default async function HomePage() {
       </main>
 
       <footer className="text-center py-6 text-sm text-text-muted border-t border-border">
-        DevTrack &mdash; Built for developers who build.
+        <a href="https://github.com/codeafridi/DEVTRACK" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-text-secondary transition-colors">
+          <Github size={14} />
+          Open source on GitHub
+        </a>
       </footer>
     </div>
   );

@@ -22,3 +22,4 @@ export default function RootLayout({
     </html>
   );
 }
+//do not remove this analytics code

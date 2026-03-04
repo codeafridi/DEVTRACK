@@ -45,9 +45,9 @@ export default async function HomePage() {
         {/* Hero */}
         <section className="flex flex-col items-center px-4 pt-20 pb-12">
           <h1 className="text-4xl sm:text-6xl font-bold text-center max-w-3xl leading-tight">
-            Your Personal
+            Developer Progress
             <br />
-            <span className="text-accent">Developer OS</span>
+            <span className="text-accent">Tracker</span>
           </h1>
 
           <p className="text-lg text-text-secondary text-center max-w-xl mt-6">

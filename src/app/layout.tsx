@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "@/components/providers";
-import { PWARegister } from "@/components/pwa-register";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -51,7 +50,6 @@ export default function RootLayout({
       </head>
       <body className="antialiased min-h-screen">
         <Providers>{children}</Providers>
-        <PWARegister />
       </body>
     </html>
   );

@@ -24,6 +24,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         });
 
         if (!user || !user.passwordHash) return null;
+        if (!user.emailVerified) return null;
 
         const isValid = await bcrypt.compare(password, user.passwordHash);
         if (!isValid) return null;
@@ -53,6 +54,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               name: user.name || "Developer",
               email: user.email,
               avatarUrl: user.image,
+              emailVerified: true,
             },
           });
 

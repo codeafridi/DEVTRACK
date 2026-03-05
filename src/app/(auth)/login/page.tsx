@@ -31,7 +31,7 @@ export default function LoginPage() {
       });
 
       if (result?.error) {
-        setError("Invalid email or password");
+        setError("Invalid email or password. If you just registered, check your email for the verification code.");
       } else {
         window.location.href = "/dashboard";
       }

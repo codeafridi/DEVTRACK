@@ -8,15 +8,18 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String
-  email         String    @unique
-  passwordHash  String?
-  avatarUrl     String?
-  githubUsername String?
-  githubToken   String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id                String    @id @default(cuid())
+  name              String
+  email             String    @unique
+  passwordHash      String?
+  avatarUrl         String?
+  githubUsername    String?
+  githubToken       String?
+  emailVerified     Boolean   @default(false)
+  verificationCode  String?
+  verificationExpiry DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
 
   accounts     Account[]
   skills       Skill[]

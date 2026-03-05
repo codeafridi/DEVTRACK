@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { registerSchema } from "@/lib/validations";
+import { sendVerificationEmail } from "@/lib/email";
+
+function generateCode() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
 
 export async function POST(req: Request) {
   try {
@@ -21,7 +26,7 @@ export async function POST(req: Request) {
       where: { email },
     });
 
-    if (existingUser) {
+    if (existingUser && existingUser.emailVerified) {
       return NextResponse.json(
         { error: "An account with this email already exists" },
         { status: 409 }
@@ -29,17 +34,35 @@ export async function POST(req: Request) {
     }
 
     const passwordHash = await bcrypt.hash(password, 12);
+    const code = generateCode();
+    const expiry = new Date(Date.now() + 10 * 60 * 1000);
 
-    const user = await prisma.user.create({
-      data: { name, email, passwordHash },
-    });
+    if (existingUser && !existingUser.emailVerified) {
+      await prisma.user.update({
+        where: { email },
+        data: {
+          name,
+          passwordHash,
+          verificationCode: code,
+          verificationExpiry: expiry,
+        },
+      });
+    } else {
+      await prisma.user.create({
+        data: {
+          name,
+          email,
+          passwordHash,
+          verificationCode: code,
+          verificationExpiry: expiry,
+        },
+      });
+    }
 
-    await prisma.streak.create({
-      data: { userId: user.id },
-    });
+    await sendVerificationEmail(email, code);
 
     return NextResponse.json(
-      { message: "Account created successfully" },
+      { message: "Verification code sent", requiresVerification: true },
       { status: 201 }
     );
   } catch (error) {

@@ -2,11 +2,13 @@
 
 import { signIn } from "next-auth/react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Loader2 } from "lucide-react";
 
 export default function RegisterPage() {
+  const router = useRouter();
   const [googleLoading, setGoogleLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -39,18 +41,8 @@ export default function RegisterPage() {
         return;
       }
 
-      const result = await signIn("credentials", {
-        email,
-        password,
-        redirect: false,
-      });
-
-      if (result?.error) {
-        setError("Account created but sign-in failed. Try logging in.");
-        setLoading(false);
-      } else {
-        window.location.href = "/dashboard";
-      }
+      sessionStorage.setItem("_reg_pw", password);
+      router.push(`/verify?email=${encodeURIComponent(email)}`);
     } catch {
       setError("Something went wrong. Try again.");
       setLoading(false);

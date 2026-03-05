@@ -7,11 +7,39 @@ import Image from "next/image";
 import { Loader2 } from "lucide-react";
 
 export default function LoginPage() {
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   async function handleGoogleSignIn() {
-    setLoading(true);
+    setGoogleLoading(true);
     await signIn("google", { callbackUrl: "/dashboard" });
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        setError("Invalid email or password");
+      } else {
+        window.location.href = "/dashboard";
+      }
+    } catch {
+      setError("Something went wrong. Try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -24,10 +52,10 @@ export default function LoginPage() {
 
       <button
         onClick={handleGoogleSignIn}
-        disabled={loading}
+        disabled={googleLoading || loading}
         className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-lg border border-border bg-surface hover:bg-surface-hover text-sm font-medium transition-colors disabled:opacity-50"
       >
-        {loading ? (
+        {googleLoading ? (
           <Loader2 size={18} className="animate-spin" />
         ) : (
           <svg width="18" height="18" viewBox="0 0 24 24">
@@ -39,6 +67,51 @@ export default function LoginPage() {
         )}
         Sign in with Google
       </button>
+
+      <div className="flex items-center gap-3 my-6">
+        <div className="flex-1 h-px bg-border" />
+        <span className="text-xs text-text-muted">or</span>
+        <div className="flex-1 h-px bg-border" />
+      </div>
+
+      {error && (
+        <div className="mb-4 p-3 rounded-lg bg-danger/10 border border-danger/20 text-sm text-danger">
+          {error}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm text-text-secondary mb-1.5">Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            placeholder="you@example.com"
+            className="w-full px-3 py-2.5 rounded-lg text-sm"
+          />
+        </div>
+        <div>
+          <label className="block text-sm text-text-secondary mb-1.5">Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            placeholder="••••••••"
+            className="w-full px-3 py-2.5 rounded-lg text-sm"
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={loading || googleLoading}
+          className="w-full py-2.5 rounded-lg bg-accent hover:bg-accent-hover text-white text-sm font-medium transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+        >
+          {loading && <Loader2 size={16} className="animate-spin" />}
+          Sign In
+        </button>
+      </form>
 
       <p className="text-center text-sm text-text-secondary mt-6">
         Don&apos;t have an account?{" "}

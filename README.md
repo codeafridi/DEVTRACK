@@ -2,7 +2,7 @@
 
 **Your personal developer operating system.** One dashboard to track your skills, projects, coding hours, GitHub activity, and streaks.
 
-[**Start using DevTrack →**](https://devtrack-rose.vercel.app/)
+[**Start using DevTrack →**](https://www.devtrack.site)
 
 ---
 
